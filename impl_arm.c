@@ -87,18 +87,18 @@ void neon_prefetch_transpose(int *src, int *dst, int w, int h)
             __builtin_prefetch(src+(y + 4 + PFDIST + 2) *w + x);
             __builtin_prefetch(src+(y + 4 + PFDIST + 3) *w + x);
 
-            int32x4_t I0 = vld1q_s32((int32_t *)(src + (y + 4 + 0) * w + x));
-            int32x4_t I1 = vld1q_s32((int32_t *)(src + (y + 4 + 1) * w + x));
-            int32x4_t I2 = vld1q_s32((int32_t *)(src + (y + 4 + 2) * w + x));
-            int32x4_t I3 = vld1q_s32((int32_t *)(src + (y + 4 + 3) * w + x));
+            I0 = vld1q_s32((int32_t *)(src + (y + 4 + 0) * w + x));
+            I1 = vld1q_s32((int32_t *)(src + (y + 4 + 1) * w + x));
+            I2 = vld1q_s32((int32_t *)(src + (y + 4 + 2) * w + x));
+            I3 = vld1q_s32((int32_t *)(src + (y + 4 + 3) * w + x));
 
             vzipq_s32(I0, I1); //I0: T0, I1:T2
             vzipq_s32(I2, I3); //I2: T1, I3:T3
 
-            int32x4_t T0 = vcombine_s32(vget_low_s32(I0), vget_low_s32(I1));//vcombine_s32(low,high)
-            int32x4_t T1 = vcombine_s32(vget_high_s32(I0), vget_high_s32(I1));
-            int32x4_t T2 = vcombine_s32(vget_low_s32(I2), vget_low_s32(I3));
-            int32x4_t T3 = vcombine_s32(vget_high_s32(I2), vget_high_s32(I3));
+            T0 = vcombine_s32(vget_low_s32(I0), vget_low_s32(I1));//vcombine_s32(low,high)
+            T1 = vcombine_s32(vget_high_s32(I0), vget_high_s32(I1));
+            T2 = vcombine_s32(vget_low_s32(I2), vget_low_s32(I3));
+            T3 = vcombine_s32(vget_high_s32(I2), vget_high_s32(I3));
 
             vst1q_s32((int32_t *)(dst + ((x + 0) * h) + y + 4), T0);
             vst1q_s32((int32_t *)(dst + ((x + 1) * h) + y + 4), T1);
@@ -110,18 +110,18 @@ void neon_prefetch_transpose(int *src, int *dst, int w, int h)
             __builtin_prefetch(src+(y + 8 + PFDIST + 2) *w + x);
             __builtin_prefetch(src+(y + 8 + PFDIST + 3) *w + x);
 
-            int32x4_t I0 = vld1q_s32((int32_t *)(src + (y + 8 + 0) * w + x));
-            int32x4_t I1 = vld1q_s32((int32_t *)(src + (y + 8 + 1) * w + x));
-            int32x4_t I2 = vld1q_s32((int32_t *)(src + (y + 8 + 2) * w + x));
-            int32x4_t I3 = vld1q_s32((int32_t *)(src + (y + 8 + 3) * w + x));
+            I0 = vld1q_s32((int32_t *)(src + (y + 8 + 0) * w + x));
+            I1 = vld1q_s32((int32_t *)(src + (y + 8 + 1) * w + x));
+            I2 = vld1q_s32((int32_t *)(src + (y + 8 + 2) * w + x));
+            I3 = vld1q_s32((int32_t *)(src + (y + 8 + 3) * w + x));
 
             vzipq_s32(I0, I1); //I0: T0, I1:T2
             vzipq_s32(I2, I3); //I2: T1, I3:T3
 
-            int32x4_t T0 = vcombine_s32(vget_low_s32(I0), vget_low_s32(I1));//vcombine_s32(low,high)
-            int32x4_t T1 = vcombine_s32(vget_high_s32(I0), vget_high_s32(I1));
-            int32x4_t T2 = vcombine_s32(vget_low_s32(I2), vget_low_s32(I3));
-            int32x4_t T3 = vcombine_s32(vget_high_s32(I2), vget_high_s32(I3));
+            T0 = vcombine_s32(vget_low_s32(I0), vget_low_s32(I1));//vcombine_s32(low,high)
+            T1 = vcombine_s32(vget_high_s32(I0), vget_high_s32(I1));
+            T2 = vcombine_s32(vget_low_s32(I2), vget_low_s32(I3));
+            T3 = vcombine_s32(vget_high_s32(I2), vget_high_s32(I3));
 
             vst1q_s32((int32_t *)(dst + ((x + 0) * h) + y + 8), T0);
             vst1q_s32((int32_t *)(dst + ((x + 1) * h) + y + 8), T1);
@@ -133,18 +133,18 @@ void neon_prefetch_transpose(int *src, int *dst, int w, int h)
             __builtin_prefetch(src+(y + 12 + PFDIST + 2) *w + x);
             __builtin_prefetch(src+(y + 12 + PFDIST + 3) *w + x);
 
-            int32x4_t I0 = vld1q_s32((int32_t *)(src + (y + 12 + 0) * w + x));
-            int32x4_t I1 = vld1q_s32((int32_t *)(src + (y + 12 + 1) * w + x));
-            int32x4_t I2 = vld1q_s32((int32_t *)(src + (y + 12 + 2) * w + x));
-            int32x4_t I3 = vld1q_s32((int32_t *)(src + (y + 12 + 3) * w + x));
+            I0 = vld1q_s32((int32_t *)(src + (y + 12 + 0) * w + x));
+            I1 = vld1q_s32((int32_t *)(src + (y + 12 + 1) * w + x));
+            I2 = vld1q_s32((int32_t *)(src + (y + 12 + 2) * w + x));
+            I3 = vld1q_s32((int32_t *)(src + (y + 12 + 3) * w + x));
 
             vzipq_s32(I0, I1); //I0: T0, I1:T2
             vzipq_s32(I2, I3); //I2: T1, I3:T3
 
-            int32x4_t T0 = vcombine_s32(vget_low_s32(I0), vget_low_s32(I1));//vcombine_s32(low,high)
-            int32x4_t T1 = vcombine_s32(vget_high_s32(I0), vget_high_s32(I1));
-            int32x4_t T2 = vcombine_s32(vget_low_s32(I2), vget_low_s32(I3));
-            int32x4_t T3 = vcombine_s32(vget_high_s32(I2), vget_high_s32(I3));
+            T0 = vcombine_s32(vget_low_s32(I0), vget_low_s32(I1));//vcombine_s32(low,high)
+            T1 = vcombine_s32(vget_high_s32(I0), vget_high_s32(I1));
+            T2 = vcombine_s32(vget_low_s32(I2), vget_low_s32(I3));
+            T3 = vcombine_s32(vget_high_s32(I2), vget_high_s32(I3));
 
             vst1q_s32((int32_t *)(dst + ((x + 0) * h) + y + 12), T0);
             vst1q_s32((int32_t *)(dst + ((x + 1) * h) + y + 12), T1);
