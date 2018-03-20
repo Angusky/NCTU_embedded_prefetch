@@ -57,7 +57,7 @@ void neon_transpose(int *src, int *dst, int w, int h)
 void neon_prefetch_transpose(int *src, int *dst, int w, int h)
 {
     for (int x = 0; x < w; x += 4) {
-        for(int y = 0; y < h; y += 4) {
+        for(int y = 0; y < h; y += 8) {
 #define PFDIST  8
             __builtin_prefetch(src+(y + PFDIST + 0) *w + x);
             __builtin_prefetch(src+(y + PFDIST + 1) *w + x);
