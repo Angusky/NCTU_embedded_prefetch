@@ -82,11 +82,6 @@ void neon_prefetch_transpose(int *src, int *dst, int w, int h)
             vst1q_s32((int32_t *)(dst + ((x + 2) * h) + y), T2);
             vst1q_s32((int32_t *)(dst + ((x + 3) * h) + y), T3);
 
-            __builtin_prefetch(src+(y + 4 + PFDIST + 0) *w + x);
-            __builtin_prefetch(src+(y + 4 + PFDIST + 1) *w + x);
-            __builtin_prefetch(src+(y + 4 + PFDIST + 2) *w + x);
-            __builtin_prefetch(src+(y + 4 + PFDIST + 3) *w + x);
-
             I0 = vld1q_s32((int32_t *)(src + (y + 4 + 0) * w + x));
             I1 = vld1q_s32((int32_t *)(src + (y + 4 + 1) * w + x));
             I2 = vld1q_s32((int32_t *)(src + (y + 4 + 2) * w + x));
@@ -104,11 +99,6 @@ void neon_prefetch_transpose(int *src, int *dst, int w, int h)
             vst1q_s32((int32_t *)(dst + ((x + 1) * h) + y + 4), T1);
             vst1q_s32((int32_t *)(dst + ((x + 2) * h) + y + 4), T2);
             vst1q_s32((int32_t *)(dst + ((x + 3) * h) + y + 4), T3);
-
-            __builtin_prefetch(src+(y + 8 + PFDIST + 0) *w + x);
-            __builtin_prefetch(src+(y + 8 + PFDIST + 1) *w + x);
-            __builtin_prefetch(src+(y + 8 + PFDIST + 2) *w + x);
-            __builtin_prefetch(src+(y + 8 + PFDIST + 3) *w + x);
 
             I0 = vld1q_s32((int32_t *)(src + (y + 8 + 0) * w + x));
             I1 = vld1q_s32((int32_t *)(src + (y + 8 + 1) * w + x));
@@ -128,11 +118,6 @@ void neon_prefetch_transpose(int *src, int *dst, int w, int h)
             vst1q_s32((int32_t *)(dst + ((x + 2) * h) + y + 8), T2);
             vst1q_s32((int32_t *)(dst + ((x + 3) * h) + y + 8), T3);
            
-            __builtin_prefetch(src+(y + 12 + PFDIST + 0) *w + x);
-            __builtin_prefetch(src+(y + 12 + PFDIST + 1) *w + x);
-            __builtin_prefetch(src+(y + 12 + PFDIST + 2) *w + x);
-            __builtin_prefetch(src+(y + 12 + PFDIST + 3) *w + x);
-
             I0 = vld1q_s32((int32_t *)(src + (y + 12 + 0) * w + x));
             I1 = vld1q_s32((int32_t *)(src + (y + 12 + 1) * w + x));
             I2 = vld1q_s32((int32_t *)(src + (y + 12 + 2) * w + x));
